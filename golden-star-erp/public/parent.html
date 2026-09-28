@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parent Dashboard - Golden Star International School</title>
+<link rel="icon" href="assets/logo.jpg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="topbar"></div>
+
+<div class="container">
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="notices">Notices</button>
+    <button class="tab-btn" data-tab="results">Results</button>
+    <button class="tab-btn" data-tab="attendance">Attendance</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-notices">
+    <div class="card">
+      <h3>Notices &amp; Alerts</h3>
+      <div id="noticesList"></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-results">
+    <div class="card">
+      <h3>Results</h3>
+      <div class="table-wrap">
+        <table id="resultsTable">
+          <thead><tr><th>Term</th><th>Exam</th><th>Subject</th><th>Marks</th><th>%</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-attendance">
+    <div class="card">
+      <h3>Attendance</h3>
+      <div class="table-wrap">
+        <table id="attendanceTable">
+          <thead><tr><th>Date</th><th>Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="footer"></div>
+
+<script src="/js/common.js"></script>
+<script src="/js/parent.js"></script>
+</body>
+</html>

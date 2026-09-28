@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard - Golden Star International School</title>
+<link rel="icon" href="assets/logo.jpg">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div id="topbar"></div>
+
+<div class="container">
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="results">My Results</button>
+    <button class="tab-btn" data-tab="attendance">My Attendance</button>
+    <button class="tab-btn" data-tab="notices">Notices</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-results">
+    <div class="card">
+      <h3>My Results</h3>
+      <button class="btn gold" id="downloadBtn">Download Result as PDF</button>
+      <div class="table-wrap" style="margin-top:12px">
+        <table id="resultsTable">
+          <thead><tr><th>Term</th><th>Exam</th><th>Subject</th><th>Marks</th><th>%</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-attendance">
+    <div class="card">
+      <h3>My Attendance</h3>
+      <div class="table-wrap">
+        <table id="attendanceTable">
+          <thead><tr><th>Date</th><th>Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-notices">
+    <div class="card">
+      <h3>Notices</h3>
+      <div id="noticesList"></div>
+    </div>
+  </div>
+</div>
+
+<div id="footer"></div>
+
+<script src="/js/common.js"></script>
+<script src="/js/student.js"></script>
+</body>
+</html>
