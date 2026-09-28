@@ -23,12 +23,11 @@ app.use(
     saveUninitialized: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 8, // 8 hours
-      secure: process.env.NODE_ENV === "production", // Automatically true on Render (HTTPS)
-      sameSite: "lax"
+      secure: true,              // Render ke HTTPS ke liye zaroori hai
+      sameSite: "none"           // Cross-site/render proxy ke liye zaroori hai
     }
   })
 );
-
 app.use("/api/auth", authRoutes);
 app.use("/api/students", studentRoutes);
 app.use("/api/teachers", teacherRoutes);
