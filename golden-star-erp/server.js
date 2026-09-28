@@ -12,6 +12,9 @@ const notificationRoutes = require("./routes/notifications");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Trust proxy for secure cookies behind Render/Cloud reverse proxies
+app.set('trust proxy', 1);
+
 app.use(express.json());
 app.use(
   session({
@@ -19,7 +22,9 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 8 // 8 hours
+      maxAge: 1000 * 60 * 60 * 8, // 8 hours
+      secure: process.env.NODE_ENV === "production", // Automatically true on Render (HTTPS)
+      sameSite: "lax"
     }
   })
 );
@@ -46,7 +51,7 @@ app.use((err, req, res, next) => {
 });
 
 process.on("uncaughtException", err => console.error("Uncaught exception:", err));
-process.on("unhandledRejection", err => console.error("Unhandled rejection:", err));
+process.on("unhandledRejection", err => console.error("Uncaught rejection:", err));
 
 app.listen(PORT, () => {
   console.log(`Golden Star International School portal running at http://localhost:${PORT}`);
