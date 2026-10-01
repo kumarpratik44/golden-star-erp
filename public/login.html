@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Golden Star International School</title>
+<link rel="icon" href="assets/logo.jpg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="login-wrap">
+  <div class="login-card">
+    <div class="logo-row"><img src="assets/logo.jpg" alt="logo"></div>
+    <h1>Golden Star International School</h1>
+    <div class="tagline">"Knowledge is power"</div>
+
+    <div class="role-select" id="roleSelect">
+      <button data-role="admin" class="active">Admin</button>
+      <button data-role="teacher">Teacher</button>
+      <button data-role="student">Student</button>
+      <button data-role="parent">Parent</button>
+    </div>
+
+    <form id="loginForm">
+      <label id="userLabel">Admin Username</label>
+      <input type="text" id="username" required autocomplete="username">
+      <label>Password</label>
+      <input type="password" id="password" required autocomplete="current-password">
+      <button class="btn" type="submit" style="width:100%">Login</button>
+    </form>
+    <div id="msg"></div>
+    <p style="font-size:0.78rem;color:var(--muted);margin-top:14px">
+      Students &amp; parents: use the Admission Number given by the school office as your username.
+    </p>
+  </div>
+</div>
+
+<script src="js/common.js"></script>
+<script>
+let role = "admin";
+const labels = {
+  admin: "Admin Username",
+  teacher: "Registered Phone Number",
+  student: "Admission Number",
+  parent: "Child's Admission Number"
+};
+
+document.querySelectorAll("#roleSelect button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#roleSelect button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    role = btn.dataset.role;
+    document.getElementById("userLabel").textContent = labels[role];
+    document.getElementById("msg").innerHTML = "";
+  });
+});
+
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value;
+  const msg = document.getElementById("msg");
+  msg.innerHTML = "";
+  try {
+    const { user } = await api("/auth/login", { method: "POST", body: { role, username, password } });
+    const dest = { admin: "/admin.html", teacher: "/teacher.html", student: "/student.html", parent: "/parent.html" };
+    window.location.href = dest[user.role];
+  } catch (err) {
+    msg.innerHTML = `<div class="msg error">${err.message}</div>`;
+  }
+});
+</script>
+</body>
+</html>
