@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard - Golden Star International School</title>
+<link rel="icon" href="assets/logo.jpg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="topbar"></div>
+
+<div class="container">
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="students">Students</button>
+    <button class="tab-btn" data-tab="teachers">Teachers</button>
+    <button class="tab-btn" data-tab="results">Results</button>
+    <button class="tab-btn" data-tab="attendance">Attendance</button>
+    <button class="tab-btn" data-tab="notices">Notices</button>
+  </div>
+
+  <!-- STUDENTS -->
+  <div class="tab-panel active" id="tab-students">
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Add Student</h3>
+        <form id="studentForm">
+          <label>Full Name</label>
+          <input id="s_name" required>
+          <div class="grid cols-2">
+            <div><label>Class</label><input id="s_class" required placeholder="e.g. 8"></div>
+            <div><label>Section</label><input id="s_section" placeholder="e.g. A"></div>
+          </div>
+          <div class="grid cols-2">
+            <div><label>Date of Birth</label><input id="s_dob" type="date"></div>
+            <div><label>Admission Year</label><input id="s_year" type="number" placeholder="2026"></div>
+          </div>
+          <label>Gender</label>
+          <select id="s_gender"><option value="">--</option><option>Male</option><option>Female</option><option>Other</option></select>
+          <label>Address</label>
+          <input id="s_address">
+          <label>Parent Name</label>
+          <input id="s_parentName">
+          <label>Parent Phone</label>
+          <input id="s_parentPhone">
+          <label>Parent Email</label>
+          <input id="s_parentEmail" type="email">
+          <button class="btn" type="submit">Add Student</button>
+        </form>
+        <div id="studentMsg"></div>
+      </div>
+
+      <div class="card" id="credentialsCard" style="display:none">
+        <h3>Login Credentials Generated</h3>
+        <p style="font-size:0.85rem;color:var(--muted)">Share these with the family now — they won't be shown again (you can always reset later).</p>
+        <div id="credentialsBox"></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3>All Students</h3>
+      <div class="table-wrap">
+        <table id="studentsTable">
+          <thead><tr><th>Admission No</th><th>Name</th><th>Class</th><th>Sec</th><th>Parent</th><th>Actions</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEACHERS -->
+  <div class="tab-panel" id="tab-teachers">
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Add Teacher</h3>
+        <form id="teacherForm">
+          <label>Full Name</label>
+          <input id="t_name" required>
+          <label>Phone (used as login)</label>
+          <input id="t_phone" required>
+          <label>Subject</label>
+          <input id="t_subject">
+          <label>Class Assigned</label>
+          <input id="t_class">
+          <button class="btn" type="submit">Add Teacher</button>
+        </form>
+        <div id="teacherMsg"></div>
+      </div>
+      <div class="card" id="teacherCredCard" style="display:none">
+        <h3>Login Credentials Generated</h3>
+        <div id="teacherCredBox"></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h3>All Teachers</h3>
+      <div class="table-wrap">
+        <table id="teachersTable">
+          <thead><tr><th>Name</th><th>Phone</th><th>Subject</th><th>Class</th><th>Actions</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="tab-panel" id="tab-results">
+    <div class="card">
+      <h3>Post a Result</h3>
+      <form id="resultForm">
+        <label>Student</label>
+        <select id="r_student" required></select>
+        <div class="grid cols-2">
+          <div><label>Term</label><input id="r_term" placeholder="Term 1"></div>
+          <div><label>Exam Name</label><input id="r_exam" required placeholder="Mid-Term"></div>
+        </div>
+        <div class="grid cols-2">
+          <div><label>Subject</label><input id="r_subject" required></div>
+          <div><label>Max Marks</label><input id="r_max" type="number" required></div>
+        </div>
+        <label>Obtained Marks</label>
+        <input id="r_obtained" type="number" required>
+        <button class="btn" type="submit">Post Result &amp; Notify Parent</button>
+      </form>
+      <div id="resultMsg"></div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h3>View Results by Student</h3>
+      <select id="r_viewStudent" style="max-width:320px"></select>
+      <div class="table-wrap" style="margin-top:10px">
+        <table id="resultsTable">
+          <thead><tr><th>Term</th><th>Exam</th><th>Subject</th><th>Marks</th><th>%</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATTENDANCE -->
+  <div class="tab-panel" id="tab-attendance">
+    <div class="card">
+      <h3>Mark Attendance</h3>
+      <div class="grid cols-2">
+        <div><label>Date</label><input id="a_date" type="date"></div>
+        <div><label>Student</label><select id="a_student"></select></div>
+      </div>
+      <label>Status</label>
+      <select id="a_status"><option>Present</option><option>Absent</option><option>Leave</option></select>
+      <button class="btn" id="a_submit">Mark</button>
+      <div id="attendanceMsg"></div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h3>Attendance History</h3>
+      <select id="a_viewStudent" style="max-width:320px"></select>
+      <div class="table-wrap" style="margin-top:10px">
+        <table id="attendanceTable">
+          <thead><tr><th>Date</th><th>Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTICES -->
+  <div class="tab-panel" id="tab-notices">
+    <div class="card">
+      <h3>Send a Notice</h3>
+      <form id="noticeForm">
+        <label>Student</label>
+        <select id="n_student" required></select>
+        <label>Title</label>
+        <input id="n_title" required placeholder="e.g. Fee Reminder">
+        <label>Message</label>
+        <textarea id="n_message" rows="3" required></textarea>
+        <button class="btn" type="submit">Send &amp; Notify Parent</button>
+      </form>
+      <div id="noticeMsg"></div>
+    </div>
+  </div>
+
+</div>
+
+<div id="footer"></div>
+
+<script src="/js/common.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

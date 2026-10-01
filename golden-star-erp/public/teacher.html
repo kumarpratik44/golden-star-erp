@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher Dashboard - Golden Star International School</title>
+<link rel="icon" href="/assets/logo.jpg">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div id="topbar"></div>
+
+<div class="container">
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="students">Students</button>
+    <button class="tab-btn" data-tab="attendance">Mark Attendance</button>
+    <button class="tab-btn" data-tab="results">Post Results</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-students">
+    <div class="card">
+      <h3>Students</h3>
+      <div class="table-wrap">
+        <table id="studentsTable">
+          <thead><tr><th>Admission No</th><th>Name</th><th>Class</th><th>Sec</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-attendance">
+    <div class="card">
+      <h3>Mark Attendance</h3>
+      <div class="grid cols-2">
+        <div><label>Date</label><input id="a_date" type="date"></div>
+        <div><label>Student</label><select id="a_student"></select></div>
+      </div>
+      <label>Status</label>
+      <select id="a_status"><option>Present</option><option>Absent</option><option>Leave</option></select>
+      <button class="btn" id="a_submit">Mark</button>
+      <div id="attendanceMsg"></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-results">
+    <div class="card">
+      <h3>Post a Result</h3>
+      <form id="resultForm">
+        <label>Student</label>
+        <select id="r_student" required></select>
+        <div class="grid cols-2">
+          <div><label>Term</label><input id="r_term" placeholder="Term 1"></div>
+          <div><label>Exam Name</label><input id="r_exam" required placeholder="Mid-Term"></div>
+        </div>
+        <div class="grid cols-2">
+          <div><label>Subject</label><input id="r_subject" required></div>
+          <div><label>Max Marks</label><input id="r_max" type="number" required></div>
+        </div>
+        <label>Obtained Marks</label>
+        <input id="r_obtained" type="number" required>
+        <button class="btn" type="submit">Post Result &amp; Notify Parent</button>
+      </form>
+      <div id="resultMsg"></div>
+    </div>
+  </div>
+</div>
+
+<div id="footer"></div>
+
+<script src="/js/common.js"></script>
+<script src="/js/teacher.js"></script>
+</body>
+</html>

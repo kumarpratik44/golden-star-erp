@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Student Portal | Golden Star International School</title>
+<link rel="icon" href="/assets/logo.jpg">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div id="topbar"></div>
+
+<div class="container">
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="profile">My Profile</button>
+    <button class="tab-btn" data-tab="results">Results</button>
+    <button class="tab-btn" data-tab="attendance">Attendance</button>
+    <button class="tab-btn" data-tab="timetable">Timetable</button>
+    <button class="tab-btn" data-tab="subjects">Subjects</button>
+    <button class="tab-btn" data-tab="holidays">Holidays</button>
+    <button class="tab-btn" data-tab="notices">Notices</button>
+  </div>
+
+  <section class="tab-panel active" id="tab-profile">
+    <div class="card">
+      <h3>My Student Record</h3>
+      <div id="profile"></div>
+    </div>
+  </section>
+
+  <section class="tab-panel" id="tab-results">
+    <div class="card">
+      <h3>My Results</h3>
+      <button class="btn gold" id="downloadBtn">Download Result PDF</button>
+      <div class="table-wrap" style="margin-top:12px">
+        <table id="resultsTable">
+          <thead><tr><th>Term</th><th>Exam</th><th>Subject</th><th>Marks</th><th>%</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab-panel" id="tab-attendance">
+    <div class="card">
+      <h3>My Attendance</h3>
+      <div class="table-wrap">
+        <table id="attendanceTable">
+          <thead><tr><th>Date</th><th>Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab-panel" id="tab-timetable">
+    <div class="card">
+      <h3>My Timetable</h3>
+      <div class="table-wrap">
+        <table id="ttTable">
+          <thead><tr><th>Day</th><th>Time</th><th>Subject</th><th>Room</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab-panel" id="tab-subjects">
+    <div id="subjectList"></div>
+  </section>
+
+  <section class="tab-panel" id="tab-holidays">
+    <div class="card">
+      <h3>School Holidays &amp; Events</h3>
+      <div id="holidayList"></div>
+    </div>
+  </section>
+
+  <section class="tab-panel" id="tab-notices">
+    <div class="card">
+      <h3>Notices &amp; Alerts</h3>
+      <div id="noticesList"></div>
+    </div>
+  </section>
+</div>
+
+<div id="footer"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/student.js"></script>
+</body>
+</html>
